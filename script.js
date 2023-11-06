@@ -67,9 +67,29 @@ function userPlays(number) {
     computerChoiceDiv.textContent = `Computer picked: ${computerNumber}`;
     if (number === computerNumber) {
       outcomeDiv.textContent = "Computer is out!";
+      Toastify({
+        text: "Computer is out!",
+        gravity: "bottom",
+        position: "center",
+        duration: 3000,
+        style: {
+          background: "#1d1d1d",
+          color: "#fff",
+        },
+      }).showToast();
       switchInnings();
     } else {
       computerScore += computerNumber;
+      Toastify({
+        text: "Computer scored!",
+        gravity: "bottom",
+        position: "center",
+        duration: 3000,
+        style: {
+          background: "#1d1d1d",
+          color: "#fff",
+        },
+      }).showToast();
       outcomeDiv.textContent = "Computer scored!";
       checkInningsEnd();
     }
@@ -84,10 +104,31 @@ function playTurn(selectedNumber) {
 
   if (selectedNumber === computerNumber) {
     outcomeDiv.textContent = "You are out!";
+    Toastify({
+      text: "You are out!",
+      gravity: "bottom",
+      position: "center",
+      duration: 3000,
+      style: {
+        background: "#1d1d1d",
+        color: "#fff",
+      },
+    }).showToast();
+
     switchInnings();
   } else {
     playerScore += selectedNumber;
     outcomeDiv.textContent = "You scored!";
+    Toastify({
+      text: "You scored!",
+      gravity: "bottom",
+      position: "center",
+      duration: 3000,
+      style: {
+        background: "#1d1d1d",
+        color: "#fff",
+      },
+    }).showToast();
     checkInningsEnd();
   }
   updateScoreboard();
@@ -140,8 +181,28 @@ function determineWinner() {
   choicesContainer.style.display = "none";
   if (playerScore > computerScore) {
     outcomeDiv.textContent = "You win!";
+    Toastify({
+      text: "You win!",
+      gravity: "bottom",
+      position: "center",
+      duration: 3000,
+      style: {
+        background: "#1d1d1d",
+        color: "#fff",
+      },
+    }).showToast();
   } else if (playerScore < computerScore) {
     outcomeDiv.textContent = "Computer wins!";
+    Toastify({
+      text: "Computer wins!",
+      gravity: "bottom",
+      position: "center",
+      duration: 3000,
+      style: {
+        background: "#1d1d1d",
+        color: "#fff",
+      },
+    }).showToast();
   } else {
     outcomeDiv.textContent = "It's a tie!";
   }

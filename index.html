@@ -1,46 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hand Cricket Game</title>
-<link rel="stylesheet" href="styles.css">
-</head>
-<body>
-<div id="game-container">
-  <h1>Hand Cricket Game</h1>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hand Cricket Game</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="mc-main-container">
+      <div id="game-container" class="main-container">
+        <h1 class="runz-heading">The Runz</h1>
+        <p class="runz-tagline">
+          Experience the thrill of hand cricket digitally with our app!
+          Strategize, guess, and hit virtual runs while outsmarting the AI
+          bowler. Perfect for quick play, it's cricket at your fingertips,
+          anytime, anywhere.
+        </p>
 
-  <div id="toss-container">
-    <button id="toss-button">Toss</button>
-    <p id="toss-result"></p>
-  </div>
-  
-  <div id="overs-container">
-    <label for="overs-input">Choose Overs (1-10):</label>
-    <input type="number" id="overs-input" min="1" max="10" value="2">
-  </div>
+       
+      </div>
+      <div class="score-container">
+        
+        <div id="overs-container">
+          <div id="scoreboard">
+            <div>
+              <p id="player-score">0 Runs</p>
+              <p class="label">User</p>
+            </div>
+            <div>
+              <p id="computer-score">0 Runs</p>
+              <p class="label">Computer</p>
+            </div>
+          </div>
+        </div>
+        <div class="over-input">
+          <label for="overs-input">Choose Overs (1-10):</label>
+          <input type="number" id="overs-input" min="1" max="10" value="2" />
+        </div>
+        <div id="choices" style="display: none">
+          <button class="choice-button" data-number="1">1</button>
+          <button class="choice-button" data-number="2">2</button>
+          <button class="choice-button" data-number="3">3</button>
+          <button class="choice-button" data-number="4">4</button>
+          <button class="choice-button" data-number="5">5</button>
+          <button class="choice-button" data-number="6">6</button>
+        </div>
 
-  <div id="scoreboard">
-    <div id="player-score">Your Score: 0</div>
-    <div id="computer-score">Computer's Score: 0</div>
-  </div>
-  
-  <div id="choices" style="display:none;">
-    <button class="choice-button" data-number="1">1</button>
-    <button class="choice-button" data-number="2">2</button>
-    <button class="choice-button" data-number="3">3</button>
-    <button class="choice-button" data-number="4">4</button>
-    <button class="choice-button" data-number="5">5</button>
-    <button class="choice-button" data-number="6">6</button>
-  </div>
-  
-  <div id="result">
-    <div id="player-choice">You picked: -</div>
-    <div id="computer-choice">Computer picked: -</div>
-    <div id="outcome">-</div>
-  </div>
-</div>
-<script src="script.js"></script>
-</body>
+        <div id="result">
+          <div id="player-choice">You picked: -</div>
+          <div id="computer-choice">Computer picked: -</div>
+          <div id="outcome">-</div>
+        </div>
+        <div id="toss-container">
+          <button class="toss-button" id="toss-button">Toss</button>
+          <p class="toss-result" id="toss-result"></p>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
 </html>
-

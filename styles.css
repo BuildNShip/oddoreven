@@ -1,64 +1,113 @@
-body {
-  font-family: Arial, sans-serif;
-  text-align: center;
+* {
   margin: 0;
   padding: 0;
-  background-color: #f4f4f4;
+  font-family: "Manrope", sans-serif;
 }
 
-#game-container {
-  width: 90%;
-  max-width: 600px;
-  margin: 20px auto;
-  padding: 20px;
-  background-color: #fff;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+.mc-main-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.main-container {
+  background-color: #1d1d1d;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+  color: white;
+  max-width: 35rem;
+  padding: 2rem;
+}
+
+.score-container {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.runz-tagline {
+  font-size: 1.25rem;
+  margin-top: 1rem;
+}
+
+.runz-heading {
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+}
+
+.toss-button {
+  background-color: #1d1d1d;
+  border: 2px solid rgb(73, 73, 73);
+  color: white;
+  padding: 0.5rem 2rem;
+  font-size: 1.25rem;
+  margin-top: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.toss-result {
+  font-size: 1.25rem;
+  margin-top: 1rem;
+  color: #1d1d1d;
 }
 
 #scoreboard {
   display: flex;
-  justify-content: space-around;
-  margin-bottom: 20px;
 }
 
-#result {
-  margin-top: 20px;
+#scoreboard div {
+  margin: 0 3rem;
+}
+
+#player-score,
+#computer-score {
+  font-size: 2.25rem;
+  margin-top: 1rem;
+  font-weight: 600;
+}
+
+.label {
+  margin-top: -0.5rem;
+  font-size: 1rem;
+}
+
+.over-input {
+  display: block;
+  margin: auto;
 }
 
 .choice-button {
-  background-color: #007bff;
-  color: white;
+  background-color: #1d1d1d;
   border: none;
-  margin: 5px;
-  padding: 10px 20px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.choice-button:hover {
-  background-color: #0056b3;
-}
-
-/* ...keep previous styles and add the following... */
-
-#toss-container, #overs-container {
-  margin-bottom: 20px;
-}
-
-#toss-button {
-  background-color: #28a745;
   color: white;
-  border: none;
-  padding: 10px 20px;
+  padding: 0.5rem 2rem;
+  font-size: 1.25rem;
+  margin-top: 1rem;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: all 0.3s ease-in-out;
 }
 
-#toss-button:hover {
-  background-color: #218838;
+.over-input {
+  margin-top: 1rem;
 }
 
 #overs-input {
-  margin-left: 10px;
+  padding: 0.25rem;
+  border: 1px solid #1d1d1d;
+  border-radius: 8px;
 }
 
+#result{
+  display: flex;
+  row-gap: 1rem;
+  column-gap: 1rem;
+  margin-top: 2rem;
+}

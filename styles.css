@@ -1,0 +1,64 @@
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+}
+
+#game-container {
+  width: 90%;
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#scoreboard {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+}
+
+#result {
+  margin-top: 20px;
+}
+
+.choice-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  margin: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.choice-button:hover {
+  background-color: #0056b3;
+}
+
+/* ...keep previous styles and add the following... */
+
+#toss-container, #overs-container {
+  margin-bottom: 20px;
+}
+
+#toss-button {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#toss-button:hover {
+  background-color: #218838;
+}
+
+#overs-input {
+  margin-left: 10px;
+}
+

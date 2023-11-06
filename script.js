@@ -8,6 +8,7 @@ const tossButton = document.getElementById("toss-button");
 const tossResult = document.getElementById("toss-result");
 const choicesContainer = document.getElementById("choices");
 const oversInput = document.getElementById("overs-input");
+const oversInputContainer = document.getElementById("overs-input-container");
 
 let playerScore = 0;
 let computerScore = 0;
@@ -38,6 +39,7 @@ function initializeGame() {
 
 tossButton.addEventListener("click", function () {
   let toss = Math.floor(Math.random() * 2); // 0 for player, 1 for computer
+  oversInputContainer.style.display = "none";
   totalOvers = parseInt(oversInput.value);
   if (toss === 0) {
     tossResult.textContent = "You won the toss! You bat first.";
@@ -86,8 +88,8 @@ function userPlays(number) {
         position: "center",
         duration: 3000,
         style: {
-          background: "#1d1d1d",
-          color: "#fff",
+          color: "#1d1d1d",
+          background: "#fff",
         },
       }).showToast();
       outcomeDiv.textContent = "Computer scored!";
@@ -110,8 +112,8 @@ function playTurn(selectedNumber) {
       position: "center",
       duration: 3000,
       style: {
-        background: "#1d1d1d",
-        color: "#fff",
+        color: "#1d1d1d",
+        background: "#fff",
       },
     }).showToast();
 
@@ -125,8 +127,8 @@ function playTurn(selectedNumber) {
       position: "center",
       duration: 3000,
       style: {
-        background: "#1d1d1d",
-        color: "#fff",
+        color: "#1d1d1d",
+        background: "#fff",
       },
     }).showToast();
     checkInningsEnd();
@@ -187,8 +189,8 @@ function determineWinner() {
       position: "center",
       duration: 3000,
       style: {
-        background: "#1d1d1d",
-        color: "#fff",
+        color: "#1d1d1d",
+        background: "#fff",
       },
     }).showToast();
   } else if (playerScore < computerScore) {
@@ -199,8 +201,8 @@ function determineWinner() {
       position: "center",
       duration: 3000,
       style: {
-        background: "#1d1d1d",
-        color: "#fff",
+        color: "#1d1d1d",
+        background: "#fff",
       },
     }).showToast();
   } else {

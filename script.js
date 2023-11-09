@@ -33,31 +33,10 @@ function initializeGame() {
   playerChoiceDiv.textContent = "";
   computerChoiceDiv.textContent = "";
   outcomeDiv.textContent = "";
-  choicesContainer.style.display = "none"; // This is hidden when the game is over CHANGE this to none when done.
+  choicesContainer.style.display = "none";
   tossButton.style.display = "block";
+  oversInputContainer.style.display = "block";
 }
-
-tossButton.addEventListener("click", function () {
-  let toss = Math.floor(Math.random() * 2); // 0 for player, 1 for computer
-  oversInputContainer.style.display = "none";
-  totalOvers = parseInt(oversInput.value);
-  if (toss === 0) {
-    tossResult.textContent = "You won the toss! You bat first.";
-    currentPlayer = "player";
-  } else {
-    tossResult.textContent = "Computer won the toss! Computer bats first.";
-    currentPlayer = "computer";
-    computerBats();
-  }
-  tossButton.style.display = "none";
-  choicesContainer.style.display = "block";
-});
-
-choiceButtons.forEach((button) => {
-  button.addEventListener("click", function () {
-    userPlays(parseInt(this.getAttribute("data-number")));
-  });
-});
 
 function userPlays(number) {
   if (currentPlayer === "player") {
@@ -106,6 +85,7 @@ function playTurn(selectedNumber) {
 
   if (selectedNumber === computerNumber) {
     outcomeDiv.textContent = "You are out!";
+
     Toastify({
       text: "You are out!",
       gravity: "bottom",
@@ -117,7 +97,11 @@ function playTurn(selectedNumber) {
       },
     }).showToast();
 
-    switchInnings();
+    if (firstInningsComplete) {
+      checkInningsEnd();
+    } else {
+      switchInnings();
+    }
   } else {
     playerScore += selectedNumber;
     outcomeDiv.textContent = "You scored!";
@@ -137,16 +121,50 @@ function playTurn(selectedNumber) {
 }
 
 function switchInnings() {
-  firstInningsComplete = true;
-  targetScore = currentPlayer === "player" ? playerScore : computerScore;
-  currentPlayer = currentPlayer === "player" ? "computer" : "player";
-  ballsInOver = 0;
-  currentOver = 0;
+  if (!firstInningsComplete) {
+    firstInningsComplete = true;
+    targetScore = currentPlayer === "player" ? playerScore : computerScore;
+    currentPlayer = currentPlayer === "player" ? "computer" : "player";
+    ballsInOver = 0;
+    currentOver = 0;
+  }
 
   if (currentPlayer === "computer") {
     computerBats();
   } else {
     outcomeDiv.textContent = "Your turn to bat. Please select a number.";
+  }
+}
+
+function checkInningsEnd() {
+  ballsInOver++;
+  if (ballsInOver === 6) {
+    ballsInOver = 0;
+    currentOver++;
+  }
+
+  if (firstInningsComplete && currentPlayer === "player") {
+    if (playerScore + (totalOvers - currentOver) * 6 < targetScore) {
+      determineWinner();
+      return;
+    }
+  }
+
+  if (currentOver === totalOvers) {
+    if (!firstInningsComplete) {
+      switchInnings();
+    } else {
+      determineWinner();
+    }
+    return;
+  }
+
+  if (
+    firstInningsComplete &&
+    ((currentPlayer === "player" && playerScore > targetScore) ||
+      (currentPlayer === "computer" && computerScore > targetScore))
+  ) {
+    determineWinner();
   }
 }
 
@@ -158,25 +176,6 @@ function computerBats() {
 function updateScoreboard() {
   playerScoreSpan.textContent = `${playerScore} Runs`;
   computerScoreSpan.textContent = `${computerScore} Runs`;
-}
-
-function checkInningsEnd() {
-  ballsInOver++;
-  if (ballsInOver === 6) {
-    ballsInOver = 0;
-    currentOver++;
-    if (currentOver === totalOvers) {
-      switchInnings();
-    }
-  }
-
-  if (
-    firstInningsComplete &&
-    ((currentPlayer === "player" && playerScore > targetScore) ||
-      (currentPlayer === "computer" && computerScore > targetScore))
-  ) {
-    determineWinner();
-  }
 }
 
 function determineWinner() {
@@ -210,4 +209,28 @@ function determineWinner() {
   }
 }
 
+// Event listeners for the toss button and choice buttons
+tossButton.addEventListener("click", function () {
+  let toss = Math.floor(Math.random() * 2); // 0 for player, 1 for computer
+  oversInputContainer.style.display = "none";
+  totalOvers = parseInt(oversInput.value);
+  if (toss === 0) {
+    tossResult.textContent = "You won the toss! You bat first.";
+    currentPlayer = "player";
+  } else {
+    tossResult.textContent = "Computer won the toss! Computer bats first.";
+    currentPlayer = "computer";
+    computerBats();
+  }
+  tossButton.style.display = "none";
+  choicesContainer.style.display = "block";
+});
+
+choiceButtons.forEach((button) => {
+  button.addEventListener("click", function () {
+    userPlays(parseInt(this.getAttribute("data-number")));
+  });
+});
+
+// Call the initializeGame function to start the game
 initializeGame();
